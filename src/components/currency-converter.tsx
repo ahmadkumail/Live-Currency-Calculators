@@ -16,8 +16,8 @@ import { ArrowDownUp, ArrowUp } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 export function CurrencyConverter() {
-  const [fromCurrency, setFromCurrency] = useState("AED");
-  const [toCurrency, setToCurrency] = useState("EUR");
+  const [fromCurrency, setFromCurrency] = useState("USD");
+  const [toCurrency, setToCurrency] = useState("PKR");
   const [amount, setAmount] = useState<number | string>(1);
   const [interbankResult, setInterbankResult] = useState<string>("");
   const [openMarketResult, setOpenMarketResult] = useState<string>("");
@@ -49,7 +49,7 @@ export function CurrencyConverter() {
   };
 
   return (
-    <div className="space-y-6 rounded-lg border bg-card p-6 shadow-sm">
+    <div className="space-y-4">
       <Card>
         <CardHeader>
           <CardTitle>Currency Converter</CardTitle>
@@ -80,7 +80,7 @@ export function CurrencyConverter() {
                 </SelectContent>
               </Select>
             </div>
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center pt-6">
               <Button
                 variant="ghost"
                 size="icon"

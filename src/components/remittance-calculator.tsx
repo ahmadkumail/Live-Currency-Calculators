@@ -49,10 +49,10 @@ export function RemittanceCalculator() {
   }, [amount, fromCurrency, toCurrency]);
 
   return (
-    <div className="space-y-6 rounded-lg border bg-card p-6 shadow-sm">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="grid gap-2 md:col-span-1">
-          <Label htmlFor="remit-amount">Amount</Label>
+    <div className="space-y-4 rounded-lg bg-card p-6">
+       <div className="grid grid-cols-1 items-end gap-4 md:grid-cols-5">
+        <div className="grid gap-2 md:col-span-2">
+          <Label htmlFor="remit-amount">Amount to Send</Label>
           <Input
             id="remit-amount"
             type="text"
@@ -69,7 +69,7 @@ export function RemittanceCalculator() {
             </SelectContent>
           </Select>
         </div>
-        <div className="grid gap-2">
+        <div className="grid gap-2 md:col-span-2">
           <Label htmlFor="to-currency-remit">To</Label>
           <Select value={toCurrency} onValueChange={setToCurrency}>
             <SelectTrigger id="to-currency-remit"><SelectValue /></SelectTrigger>
@@ -96,7 +96,7 @@ export function RemittanceCalculator() {
             </TableHeader>
             <TableBody>
               {calculationResults.length > 0 ? calculationResults.map((result, index) => (
-                <TableRow key={result.id} className={index === 0 ? 'bg-accent/20' : ''}>
+                <TableRow key={result.id} className={index === 0 ? 'bg-green-50' : ''}>
                   <TableCell className="font-medium">{result.name}</TableCell>
                   <TableCell className="text-right">{result.fee.toFixed(2)}</TableCell>
                   <TableCell className="text-right font-semibold">{result.recipientGets.toFixed(2)}</TableCell>
