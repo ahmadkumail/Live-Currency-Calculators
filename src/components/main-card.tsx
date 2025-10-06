@@ -8,9 +8,9 @@ export function MainCard() {
   return (
     <div className="w-full max-w-4xl">
       <Tabs defaultValue="converter" className="w-full">
-        <TabsList className="grid w-full grid-cols-4 rounded-lg bg-muted p-1">
+        <TabsList className="grid h-auto w-full grid-cols-2 rounded-lg bg-muted p-1 sm:grid-cols-4">
           <TabsTrigger value="converter" className="data-[state=active]:bg-background data-[state=active]:shadow-sm">
-            Currency Converter
+            Converter
           </TabsTrigger>
           <TabsTrigger value="remittance" className="data-[state=active]:bg-background data-[state=active]:shadow-sm">
             Remittance

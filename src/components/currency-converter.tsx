@@ -23,7 +23,7 @@ export function CurrencyConverter() {
   const [openMarketResult, setOpenMarketResult] = useState<string>("");
 
   const interbankRate =
-    exchangeRates[toCurrency] / exchangeRates[fromCurrency];
+    (exchangeRates[toCurrency] || 0) / (exchangeRates[fromCurrency] || 1);
   const openMarketRate = interbankRate * 1.02; // 2% higher for open market
 
   useEffect(() => {
@@ -118,9 +118,9 @@ export function CurrencyConverter() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">
+            <div className="text-2xl font-bold md:text-3xl">
               {interbankResult}{" "}
-              <span className="text-xl font-medium text-muted-foreground">
+              <span className="text-lg font-medium text-muted-foreground md:text-xl">
                 {toCurrency}
               </span>
             </div>
@@ -137,9 +137,9 @@ export function CurrencyConverter() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">
+            <div className="text-2xl font-bold md:text-3xl">
               {openMarketResult}{" "}
-              <span className="text-xl font-medium text-muted-foreground">
+              <span className="text-lg font-medium text-muted-foreground md:text-xl">
                 {toCurrency}
               </span>
             </div>

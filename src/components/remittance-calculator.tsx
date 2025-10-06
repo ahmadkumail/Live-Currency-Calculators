@@ -23,7 +23,7 @@ export function RemittanceCalculator() {
   const calculationResults = useMemo(() => {
     if (typeof amount !== 'number' || amount <= 0) return [];
 
-    const marketRate = exchangeRates[toCurrency] / exchangeRates[fromCurrency];
+    const marketRate = (exchangeRates[toCurrency] || 0) / (exchangeRates[fromCurrency] || 1);
 
     const results = banks.map(bank => {
       const bankRate = marketRate * bank.rateModifier;
@@ -87,7 +87,7 @@ export function RemittanceCalculator() {
       
       <div>
         <h3 className="mb-2 text-lg font-medium">Bank Comparison</h3>
-        <Card>
+        <div className="w-full overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow>
@@ -99,9 +99,9 @@ export function RemittanceCalculator() {
             <TableBody>
               {calculationResults.length > 0 ? calculationResults.map((result, index) => (
                 <TableRow key={result.id} className={index === 0 ? 'bg-green-50 dark:bg-green-900/20' : ''}>
-                  <TableCell className="font-medium">{result.name}</TableCell>
+                  <TableCell className="font-medium whitespace-nowrap">{result.name}</TableCell>
                   <TableCell className="text-right">{result.fee.toFixed(2)}</TableCell>
-                  <TableCell className="text-right font-semibold">{result.recipientGets.toFixed(2)}</TableCell>
+                  <TableCell className="text-right font-semibold whitespace-nowrap">{result.recipientGets.toFixed(2)}</TableCell>
                 </TableRow>
               )) : (
                 <TableRow>
@@ -112,7 +112,7 @@ export function RemittanceCalculator() {
               )}
             </TableBody>
           </Table>
-        </Card>
+        </div>
       </div>
       </CardContent>
     </Card>
