@@ -2,7 +2,7 @@ import { MainCard } from '@/components/main-card';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Live Currency Rates in Pakistan – USD to PKR & More (Real-Time Updates)",
+  title: "Live Currency Rates in Pakistan – USD to PKR & More",
   description:
     "Check today's live currency rates in Pakistan. Convert USD, AED, GBP, and other currencies to PKR with real-time exchange updates and remittance guidance.",
   keywords:
