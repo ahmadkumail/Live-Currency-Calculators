@@ -6,8 +6,14 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 
 export const metadata: Metadata = {
-  title: 'Live Currency Converter',
-  description: 'Your guide to global finance.',
+  title: 'Live Currency Converter – Real-Time Exchange Rates & Remittance Fees',
+  description: 'Convert currencies instantly with live exchange rates, remittance fee calculator, and bank transfer comparison. Stay updated on global finance.',
+  openGraph: {
+    title: 'Live Currency Converter – Real-Time Exchange Rates & Remittance Fees',
+    description: 'Check live exchange rates, remittance fees, and bank transfer costs worldwide.',
+    type: 'website',
+    url: 'https://www.livecurrencyconverter.website',
+  },
 };
 
 export default function RootLayout({
