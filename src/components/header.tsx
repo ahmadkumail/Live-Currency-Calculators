@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { DollarSign } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "./ui/button";
 
 const navLinks = [
@@ -56,7 +55,6 @@ export function Header() {
                 <Button variant={pathname === '/about' ? 'secondary' : 'ghost'} size="sm">About</Button>
               </Link>
           </nav>
-          <ThemeToggle />
         </div>
       </div>
     </header>
