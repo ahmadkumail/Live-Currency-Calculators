@@ -2,10 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { DollarSign } from "lucide-react";
+import { DollarSign, Menu } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -50,12 +55,41 @@ export function Header() {
             })}
           </nav>
            <nav className="flex items-center gap-1 md:hidden">
-             <Link href="/" passHref>
-                <Button variant={pathname === '/' ? 'secondary' : 'ghost'} size="sm">Home</Button>
-              </Link>
-             <Link href="/about" passHref>
-                <Button variant={pathname === '/about' ? 'secondary' : 'ghost'} size="sm">About</Button>
-              </Link>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Toggle Navigation</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left">
+                <div className="flex flex-col gap-4 p-4">
+                <Link href="/" className="flex items-center space-x-2 mb-4">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
+                    <DollarSign className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <span className="font-bold">
+                    Live Currency Converter
+                  </span>
+                </Link>
+                  {navLinks.map((link) => {
+                     const isActive = pathname === link.href;
+                    return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={cn(
+                        "rounded-md px-3 py-1.5 text-base font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground",
+                        isActive && "bg-accent text-accent-foreground"
+                      )}
+                    >
+                      {link.label}
+                    </Link>
+                  )}
+                  )}
+                </div>
+              </SheetContent>
+            </Sheet>
           </nav>
         </div>
       </div>
