@@ -2,7 +2,6 @@ import type {Metadata} from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
-import { Header } from '@/components/header';
 
 export const metadata: Metadata = {
   title: 'Currency Compass',
@@ -24,7 +23,6 @@ export default function RootLayout({
       <body className="min-h-screen bg-background font-body antialiased">
         <ThemeProvider>
           <div className="relative flex min-h-screen flex-col">
-            <Header />
             <main className="flex-1">{children}</main>
           </div>
           <Toaster />
