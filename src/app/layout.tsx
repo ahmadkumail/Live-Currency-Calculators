@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Live Currency Converter – Real-Time Exchange Rates & Remittance Fees',
@@ -27,6 +28,17 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        {/* Google tag (gtag.js) */}
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-LW9B2S8PPV"></Script>
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-LW9B2S8PPV');
+          `}
+        </Script>
       </head>
       <body className="min-h-screen bg-background font-sans antialiased" style={{fontFamily: "'Inter', sans-serif"}}>
         <ThemeProvider>
