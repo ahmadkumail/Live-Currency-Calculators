@@ -49,7 +49,7 @@ export function CurrencyConverter() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 rounded-lg border bg-card p-6 shadow-sm">
       <Card>
         <CardHeader>
           <CardTitle>Currency Converter</CardTitle>
