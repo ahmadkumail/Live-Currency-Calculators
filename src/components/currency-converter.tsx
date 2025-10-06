@@ -55,8 +55,8 @@ export function CurrencyConverter() {
           <CardTitle>Currency Converter</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <div className="grid grid-cols-1 items-end gap-4 md:grid-cols-5">
-            <div className="grid gap-2 md:col-span-2">
+          <div className="grid grid-cols-1 items-end gap-4 md:grid-cols-[2fr_1fr_auto_1fr] md:gap-2">
+            <div className="grid gap-2">
               <Label htmlFor="amount">Amount</Label>
               <Input
                 id="amount"
@@ -112,8 +112,8 @@ export function CurrencyConverter() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <div className="flex items-center gap-2 text-sm font-medium text-green-600">
-              <ArrowUp className="h-4 w-4" />
+            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+              <ArrowUp className="h-4 w-4 text-green-600" />
               Official (Interbank)
             </div>
           </CardHeader>
@@ -131,8 +131,8 @@ export function CurrencyConverter() {
         </Card>
         <Card>
           <CardHeader>
-            <div className="flex items-center gap-2 text-sm font-medium text-orange-500">
-              <ArrowUp className="h-4 w-4" />
+            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+              <ArrowUp className="h-4 w-4 text-orange-500" />
               Open Market (Est.)
             </div>
           </CardHeader>

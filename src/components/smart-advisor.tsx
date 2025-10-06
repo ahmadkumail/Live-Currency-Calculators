@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { countries } from "@/lib/data";
 import { Loader2, Sparkles } from "lucide-react";
 import type { SmartDeductionAdvisorOutput } from "@/ai/flows/smart-deduction-advisor";
@@ -46,80 +46,86 @@ export function SmartAdvisor() {
   }
 
   return (
-    <div className="space-y-6 rounded-lg border bg-card p-6 shadow-sm">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <FormField
-            control={form.control}
-            name="amountToSend"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Amount to Send (USD)</FormLabel>
-                <FormControl>
-                  <Input type="number" placeholder="e.g., 1000" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="recipientLocation"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Recipient Location</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+    <Card>
+      <CardHeader>
+        <CardTitle>Smart Advisor</CardTitle>
+        <CardDescription>Get AI-powered advice for the best transfer options.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="amountToSend"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Amount to Send (USD)</FormLabel>
                   <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a country" />
-                    </SelectTrigger>
+                    <Input type="number" placeholder="e.g., 1000" {...field} />
                   </FormControl>
-                  <SelectContent>
-                    {countries.map((country) => (
-                      <SelectItem key={country} value={country}>
-                        {country}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit" disabled={isLoading} className="w-full">
-            {isLoading ? (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <Sparkles className="mr-2 h-4 w-4" />
-            )}
-            Get AI Advice
-          </Button>
-        </form>
-      </Form>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="recipientLocation"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Recipient Location</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a country" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {countries.map((country) => (
+                        <SelectItem key={country} value={country}>
+                          {country}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit" disabled={isLoading} className="w-full">
+              {isLoading ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <Sparkles className="mr-2 h-4 w-4" />
+              )}
+              Get AI Advice
+            </Button>
+          </form>
+        </Form>
 
-      {error && (
-        <p className="text-center text-sm text-destructive">{error}</p>
-      )}
+        {error && (
+          <p className="text-center text-sm text-destructive">{error}</p>
+        )}
 
-      {advice && (
-        <Card className="mt-6 bg-secondary animate-in fade-in">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-primary">
-              <Sparkles className="h-5 w-5" /> AI Recommendation
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <h3 className="font-semibold">Best Bank</h3>
-              <p className="text-muted-foreground">{advice.bankRecommendation}</p>
-            </div>
-            <div>
-              <h3 className="font-semibold">Deduction Details</h3>
-              <p className="text-muted-foreground">{advice.deductionDetails}</p>
-            </div>
-          </CardContent>
-        </Card>
-      )}
-    </div>
+        {advice && (
+          <Card className="mt-6 bg-secondary animate-in fade-in">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-primary">
+                <Sparkles className="h-5 w-5" /> AI Recommendation
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <h3 className="font-semibold">Best Bank</h3>
+                <p className="text-muted-foreground">{advice.bankRecommendation}</p>
+              </div>
+              <div>
+                <h3 className="font-semibold">Deduction Details</h3>
+                <p className="text-muted-foreground">{advice.deductionDetails}</p>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+      </CardContent>
+    </Card>
   );
 }

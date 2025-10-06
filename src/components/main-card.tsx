@@ -8,17 +8,17 @@ export function MainCard() {
   return (
     <div className="w-full max-w-4xl">
       <Tabs defaultValue="converter" className="w-full">
-        <TabsList className="grid w-full grid-cols-4 rounded-lg bg-gray-200/75 p-1">
-          <TabsTrigger value="converter" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">
+        <TabsList className="grid w-full grid-cols-4 rounded-lg bg-muted p-1">
+          <TabsTrigger value="converter" className="data-[state=active]:bg-background data-[state=active]:shadow-sm">
             Currency Converter
           </TabsTrigger>
-          <TabsTrigger value="remittance" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">
+          <TabsTrigger value="remittance" className="data-[state=active]:bg-background data-[state=active]:shadow-sm">
             Remittance
           </TabsTrigger>
-           <TabsTrigger value="smart-advisor" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">
+           <TabsTrigger value="smart-advisor" className="data-[state=active]:bg-background data-[state=active]:shadow-sm">
             Smart Advisor
           </TabsTrigger>
-          <TabsTrigger value="alerts" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">
+          <TabsTrigger value="alerts" className="data-[state=active]:bg-background data-[state=active]:shadow-sm">
             Rate Alerts
           </TabsTrigger>
         </TabsList>

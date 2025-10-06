@@ -49,9 +49,14 @@ export function RemittanceCalculator() {
   }, [amount, fromCurrency, toCurrency]);
 
   return (
-    <div className="space-y-4 rounded-lg bg-card p-6">
-       <div className="grid grid-cols-1 items-end gap-4 md:grid-cols-5">
-        <div className="grid gap-2 md:col-span-2">
+    <Card>
+      <CardHeader>
+        <CardTitle>Remittance Calculator</CardTitle>
+        <CardDescription>Compare banks to find the best rate for your transfer.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-6">
+       <div className="grid grid-cols-1 items-end gap-4 md:grid-cols-3">
+        <div className="grid gap-2">
           <Label htmlFor="remit-amount">Amount to Send</Label>
           <Input
             id="remit-amount"
@@ -69,7 +74,7 @@ export function RemittanceCalculator() {
             </SelectContent>
           </Select>
         </div>
-        <div className="grid gap-2 md:col-span-2">
+        <div className="grid gap-2">
           <Label htmlFor="to-currency-remit">To</Label>
           <Select value={toCurrency} onValueChange={setToCurrency}>
             <SelectTrigger id="to-currency-remit"><SelectValue /></SelectTrigger>
@@ -80,12 +85,9 @@ export function RemittanceCalculator() {
         </div>
       </div>
       
-      <Card>
-        <CardHeader>
-          <CardTitle>Bank Comparison</CardTitle>
-          <CardDescription>Estimated fees and what your recipient will get.</CardDescription>
-        </CardHeader>
-        <CardContent>
+      <div>
+        <h3 className="mb-2 text-lg font-medium">Bank Comparison</h3>
+        <Card>
           <Table>
             <TableHeader>
               <TableRow>
@@ -96,22 +98,23 @@ export function RemittanceCalculator() {
             </TableHeader>
             <TableBody>
               {calculationResults.length > 0 ? calculationResults.map((result, index) => (
-                <TableRow key={result.id} className={index === 0 ? 'bg-green-50' : ''}>
+                <TableRow key={result.id} className={index === 0 ? 'bg-green-50 dark:bg-green-900/20' : ''}>
                   <TableCell className="font-medium">{result.name}</TableCell>
                   <TableCell className="text-right">{result.fee.toFixed(2)}</TableCell>
                   <TableCell className="text-right font-semibold">{result.recipientGets.toFixed(2)}</TableCell>
                 </TableRow>
               )) : (
                 <TableRow>
-                  <TableCell colSpan={3} className="text-center text-muted-foreground">
+                  <TableCell colSpan={3} className="text-center text-muted-foreground py-8">
                     Enter an amount to see comparison.
                   </TableCell>
                 </TableRow>
               )}
             </TableBody>
           </Table>
-        </CardContent>
-      </Card>
-    </div>
+        </Card>
+      </div>
+      </CardContent>
+    </Card>
   );
 }
