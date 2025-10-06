@@ -1,4 +1,4 @@
-import { DollarSign, Euro, PoundSterling, JapaneseYen, CircleDollarSign, Bell } from 'lucide-react';
+import { DollarSign, Euro, PoundSterling, JapaneseYen, CircleDollarSign } from 'lucide-react';
 
 export const currencies = [
   { code: 'USD', name: 'US Dollar', icon: DollarSign },
