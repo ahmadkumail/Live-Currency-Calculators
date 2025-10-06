@@ -6,12 +6,13 @@ import { DollarSign } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "./ui/button";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/converter", label: "Converter" },
-  { href: "/remittance", label: "Remittance" },
-  { href: "/banks", label: "Banks" },
+  { href: "/about", label: "About Us" },
+  { href: "/terms", label: "Terms" },
+  { href: "/privacy", label: "Privacy" },
 ];
 
 export function Header() {
@@ -25,10 +26,10 @@ export function Header() {
             <DollarSign className="h-5 w-5 text-primary-foreground" />
           </div>
           <span className="hidden font-bold sm:inline-block">
-            Currency<span className="text-primary">Convert</span>
+            Currency<span className="text-primary">Compass</span>
           </span>
         </Link>
-        <nav className="flex flex-1 items-center justify-center gap-1">
+        <nav className="hidden flex-1 items-center justify-center gap-1 md:flex">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -45,7 +46,15 @@ export function Header() {
             );
           })}
         </nav>
-        <div className="flex items-center justify-end">
+        <div className="flex flex-1 items-center justify-end gap-2">
+           <nav className="flex items-center gap-1 md:hidden">
+             <Link href="/" passHref>
+                <Button variant={pathname === '/' ? 'secondary' : 'ghost'} size="sm">Home</Button>
+              </Link>
+             <Link href="/about" passHref>
+                <Button variant={pathname === '/about' ? 'secondary' : 'ghost'} size="sm">About</Button>
+              </Link>
+          </nav>
           <ThemeToggle />
         </div>
       </div>
