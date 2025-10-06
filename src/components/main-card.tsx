@@ -7,9 +7,9 @@ import { Coins, Bot, Send } from "lucide-react";
 
 export function MainCard() {
   return (
-    <Card className="w-full max-w-lg shadow-2xl">
+    <Card className="w-full max-w-lg shadow-xl border-t-4 border-primary">
       <CardHeader className="text-center">
-        <CardTitle>Global Transfers Made Easy</CardTitle>
+        <CardTitle className="text-3xl font-bold">Global Transfers Made Easy</CardTitle>
         <CardDescription>Convert, compare, and get smart advice instantly.</CardDescription>
       </CardHeader>
       <CardContent>
