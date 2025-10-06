@@ -9,17 +9,17 @@ export function Footer() {
             © {new Date().getFullYear()} Live Currency Converter. All rights reserved.
           </p>
         </div>
-        <div className="flex items-center gap-4">
+        <nav className="flex items-center gap-4">
           <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground">
             About Us
           </Link>
           <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground">
-            Terms & Conditions
+            Terms
           </Link>
           <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground">
-            Privacy Policy
+            Privacy
           </Link>
-        </div>
+        </nav>
       </div>
     </footer>
   );
