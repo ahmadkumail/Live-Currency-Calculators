@@ -6,7 +6,7 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 
 export const metadata: Metadata = {
-  title: 'Currency Compass',
+  title: 'Live Currency Converter',
   description: 'Your guide to global finance.',
 };
 

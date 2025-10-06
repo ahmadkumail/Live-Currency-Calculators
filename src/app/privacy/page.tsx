@@ -8,7 +8,7 @@ export default function PrivacyPage() {
         </p>
         <div className="prose prose-lg max-w-none text-foreground">
           <p>
-            CurrencyCompass ("us", "we", or "our") operates the CurrencyCompass website (the "Service"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.
+            Live Currency Converter ("us", "we", or "our") operates the Live Currency Converter website (the "Service"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.
           </p>
           <h2 className="text-2xl font-bold mt-8">1. Information Collection and Use</h2>
           <p>
@@ -21,7 +21,7 @@ export default function PrivacyPage() {
           </ul>
           <h2 className="text-2xl font-bold mt-8">2. Use of Data</h2>
           <p>
-            CurrencyCompass uses the collected data for various purposes:
+            Live Currency Converter uses the collected data for various purposes:
           </p>
           <ul>
             <li>To provide and maintain the Service</li>

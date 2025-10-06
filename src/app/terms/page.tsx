@@ -8,7 +8,7 @@ export default function TermsPage() {
         </p>
         <div className="prose prose-lg max-w-none text-foreground">
           <p>
-            Please read these Terms and Conditions ("Terms", "Terms and Conditions") carefully before using the CurrencyCompass website (the "Service") operated by CurrencyCompass ("us", "we", or "our").
+            Please read these Terms and Conditions ("Terms", "Terms and Conditions") carefully before using the Live Currency Converter website (the "Service") operated by Live Currency Converter ("us", "we", or "our").
           </p>
           <h2 className="text-2xl font-bold mt-8">1. Acceptance of Terms</h2>
           <p>
@@ -20,11 +20,11 @@ export default function TermsPage() {
           </p>
           <h2 className="text-2xl font-bold mt-8">3. Intellectual Property</h2>
           <p>
-            The Service and its original content, features, and functionality are and will remain the exclusive property of CurrencyCompass and its licensors. The Service is protected by copyright, trademark, and other laws of both the and foreign countries.
+            The Service and its original content, features, and functionality are and will remain the exclusive property of Live Currency Converter and its licensors. The Service is protected by copyright, trademark, and other laws of both the and foreign countries.
           </p>
           <h2 className="text-2xl font-bold mt-8">4. Limitation of Liability</h2>
           <p>
-            In no event shall CurrencyCompass, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Service.
+            In no event shall Live Currency Converter, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Service.
           </p>
           <h2 className="text-2xl font-bold mt-8">5. Changes</h2>
           <p>
