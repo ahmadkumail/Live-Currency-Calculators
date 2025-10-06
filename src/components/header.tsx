@@ -24,7 +24,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 max-w-4xl items-center">
+      <div className="container flex h-14 max-w-4xl items-center justify-between">
         <div className="flex items-center space-x-2">
           <Link href="/" className="flex items-center space-x-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
@@ -36,8 +36,8 @@ export function Header() {
           </Link>
         </div>
         
-        <div className="flex flex-1 items-center justify-end gap-2">
-           <nav className="hidden flex-1 items-center justify-end gap-1 md:flex">
+        <div className="flex items-center gap-2">
+           <nav className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
