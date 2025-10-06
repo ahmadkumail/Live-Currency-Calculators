@@ -9,19 +9,19 @@ export function MainCard() {
         <TabsList className="grid w-full grid-cols-3 rounded-lg bg-gray-200/75 p-1">
           <TabsTrigger
             value="converter"
-            className="data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm rounded-md"
+            className="data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm rounded-md text-gray-500"
           >
             Currency Converter
           </TabsTrigger>
           <TabsTrigger
             value="remittance"
-            className="data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm rounded-md"
+            className="data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm rounded-md text-gray-500"
           >
             Remittance
           </TabsTrigger>
           <TabsTrigger
             value="alerts"
-            className="data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm rounded-md"
+            className="data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm rounded-md text-gray-500"
           >
             Rate Alerts
           </TabsTrigger>

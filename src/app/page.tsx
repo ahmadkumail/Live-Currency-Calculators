@@ -2,7 +2,7 @@ import { MainCard } from '@/components/main-card';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen w-full flex-col items-center bg-gray-50">
+    <div className="flex min-h-screen w-full flex-col items-center bg-[hsl(var(--background))]">
       <header className="flex w-full flex-col items-center justify-between p-4 py-12 text-center md:p-6 md:py-16">
         <h1 className="text-4xl font-bold text-gray-900">
           Live Currency Converter
