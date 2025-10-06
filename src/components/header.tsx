@@ -29,24 +29,25 @@ export function Header() {
             Live Currency Converter
           </span>
         </Link>
-        <nav className="hidden flex-1 items-center justify-center gap-1 md:flex">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  "rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground",
-                  isActive && "bg-accent text-accent-foreground"
-                )}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
+        
         <div className="flex flex-1 items-center justify-end gap-2">
+           <nav className="hidden flex-1 items-center justify-end gap-1 md:flex">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground",
+                    isActive && "bg-accent text-accent-foreground"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
            <nav className="flex items-center gap-1 md:hidden">
              <Link href="/" passHref>
                 <Button variant={pathname === '/' ? 'secondary' : 'ghost'} size="sm">Home</Button>
