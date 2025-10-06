@@ -1,0 +1,54 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { DollarSign } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/theme-toggle";
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/converter", label: "Converter" },
+  { href: "/remittance", label: "Remittance" },
+  { href: "/banks", label: "Banks" },
+];
+
+export function Header() {
+  const pathname = usePathname();
+
+  return (
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-14 max-w-screen-2xl items-center">
+        <Link href="/" className="mr-6 flex items-center space-x-2">
+          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
+            <DollarSign className="h-5 w-5 text-primary-foreground" />
+          </div>
+          <span className="hidden font-bold sm:inline-block">
+            Currency<span className="text-primary">Convert</span>
+          </span>
+        </Link>
+        <nav className="flex flex-1 items-center justify-center gap-1">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground",
+                  isActive && "bg-accent text-accent-foreground"
+                )}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+        </nav>
+        <div className="flex items-center justify-end">
+          <ThemeToggle />
+        </div>
+      </div>
+    </header>
+  );
+}
