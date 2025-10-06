@@ -1,28 +1,23 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CurrencyConverter } from "./currency-converter";
 import { RemittanceCalculator } from "./remittance-calculator";
+import { SmartAdvisor } from "./smart-advisor";
 
 export function MainCard() {
   return (
     <div className="w-full max-w-4xl">
       <Tabs defaultValue="converter" className="w-full">
-        <TabsList className="grid w-full grid-cols-3 rounded-lg bg-gray-200/75 p-1">
-          <TabsTrigger
-            value="converter"
-            className="data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm rounded-md text-gray-500"
-          >
+        <TabsList className="grid w-full grid-cols-4 rounded-lg bg-muted p-1">
+          <TabsTrigger value="converter">
             Currency Converter
           </TabsTrigger>
-          <TabsTrigger
-            value="remittance"
-            className="data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm rounded-md text-gray-500"
-          >
+          <TabsTrigger value="remittance">
             Remittance
           </TabsTrigger>
-          <TabsTrigger
-            value="alerts"
-            className="data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm rounded-md text-gray-500"
-          >
+           <TabsTrigger value="smart-advisor">
+            Smart Advisor
+          </TabsTrigger>
+          <TabsTrigger value="alerts">
             Rate Alerts
           </TabsTrigger>
         </TabsList>
@@ -31,6 +26,9 @@ export function MainCard() {
         </TabsContent>
         <TabsContent value="remittance" className="mt-6">
           <RemittanceCalculator />
+        </TabsContent>
+        <TabsContent value="smart-advisor" className="mt-6">
+          <SmartAdvisor />
         </TabsContent>
         <TabsContent value="alerts" className="mt-6">
           <div className="flex items-center justify-center rounded-lg border bg-card p-8 shadow-sm">
