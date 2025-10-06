@@ -2,6 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CurrencyConverter } from "./currency-converter";
 import { RemittanceCalculator } from "./remittance-calculator";
 import { SmartAdvisor } from "./smart-advisor";
+import { RateAlerts } from "./rate-alerts";
 
 export function MainCard() {
   return (
@@ -31,11 +32,7 @@ export function MainCard() {
           <SmartAdvisor />
         </TabsContent>
         <TabsContent value="alerts" className="mt-4">
-          <div className="flex items-center justify-center rounded-lg border bg-card p-8 shadow-sm">
-            <p className="text-muted-foreground">
-              Rate Alerts feature coming soon!
-            </p>
-          </div>
+          <RateAlerts />
         </TabsContent>
       </Tabs>
     </div>
