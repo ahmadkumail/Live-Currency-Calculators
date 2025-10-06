@@ -36,7 +36,7 @@ export default function Home() {
     <div className="container relative mx-auto flex max-w-4xl flex-1 flex-col items-center justify-center py-8 md:py-12">
       <header className="mb-4 px-4 text-center sm:mb-8">
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-5xl">
-          Live Currency Rates in Pakistan (USD, AED, GBP to PKR)
+          Live Currency Rates in Pakistan – USD to PKR & More
         </h1>
         <p className="mt-2 text-base text-muted-foreground sm:mt-4 sm:text-lg">
           Stay updated with real-time exchange rates in Pakistan. Convert USD,
