@@ -46,6 +46,20 @@ export const banks = [
     feeType: 'fixed',
     rateModifier: 1, // Market rate
   },
+  {
+    id: 'wise',
+    name: 'Wise',
+    fee: 0.005, // 0.5%
+    feeType: 'percentage',
+    rateModifier: 1, // Market rate
+  },
+  {
+    id: 'payoneer',
+    name: 'Payoneer',
+    fee: 3,
+    feeType: 'fixed',
+    rateModifier: 0.992, // 0.8% worse than market rate
+  }
 ];
 
 export const countries = [
