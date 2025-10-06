@@ -1,4 +1,4 @@
-import { DollarSign, Euro, PoundSterling, JapaneseYen, CircleDollarSign } from 'lucide-react';
+import { DollarSign, Euro, PoundSterling, JapaneseYen, CircleDollarSign, Bell } from 'lucide-react';
 
 export const currencies = [
   { code: 'USD', name: 'US Dollar', icon: DollarSign },
@@ -9,6 +9,7 @@ export const currencies = [
   { code: 'AUD', name: 'Australian Dollar', icon: CircleDollarSign },
   { code: 'INR', name: 'Indian Rupee', icon: CircleDollarSign },
   { code: 'PKR', name: 'Pakistani Rupee', icon: CircleDollarSign },
+  { code: 'AED', name: 'UAE Dirham', icon: CircleDollarSign },
 ];
 
 export const exchangeRates: { [key: string]: number } = {
@@ -20,6 +21,7 @@ export const exchangeRates: { [key: string]: number } = {
   AUD: 1.51,
   INR: 83.54,
   PKR: 278.47,
+  AED: 3.67,
 };
 
 export const banks = [

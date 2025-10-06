@@ -49,7 +49,7 @@ export function RemittanceCalculator() {
   }, [amount, fromCurrency, toCurrency]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 rounded-lg border bg-card p-6 shadow-sm">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="grid gap-2 md:col-span-1">
           <Label htmlFor="remit-amount">Amount</Label>

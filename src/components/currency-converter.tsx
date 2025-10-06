@@ -6,26 +6,34 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { currencies, exchangeRates } from "@/lib/data";
-import { ArrowDownUp } from "lucide-react";
+import { ArrowDownUp, TrendingUp } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function CurrencyConverter() {
   const [fromCurrency, setFromCurrency] = useState("USD");
-  const [toCurrency, setToCurrency] = useState("PKR");
-  const [amount, setAmount] = useState<number | string>(100);
-  const [convertedAmount, setConvertedAmount] = useState<number | string>("");
-  const [rate, setRate] = useState(0);
+  const [toCurrency, setToCurrency] = useState("EUR");
+  const [amount, setAmount] = useState<number | string>(1);
+  const [interbankRate, setInterbankRate] = useState(0);
+  const [openMarketRate, setOpenMarketRate] = useState(0);
+  const [interbankResult, setInterbankResult] = useState<string>("");
+  const [openMarketResult, setOpenMarketResult] = useState<string>("");
 
   useEffect(() => {
     const fromRate = exchangeRates[fromCurrency];
     const toRate = exchangeRates[toCurrency];
-    const currentRate = toRate / fromRate;
-    setRate(currentRate);
+    
+    const currentInterbankRate = toRate / fromRate;
+    setInterbankRate(currentInterbankRate);
+    
+    const currentOpenMarketRate = currentInterbankRate * 1.007; // Assuming 0.7% higher
+    setOpenMarketRate(currentOpenMarketRate);
 
     if (typeof amount === 'number') {
-      const result = amount * currentRate;
-      setConvertedAmount(result.toFixed(2));
+      setInterbankResult((amount * currentInterbankRate).toFixed(2));
+      setOpenMarketResult((amount * currentOpenMarketRate).toFixed(2));
     } else {
-      setConvertedAmount("");
+      setInterbankResult("");
+      setOpenMarketResult("");
     }
   }, [amount, fromCurrency, toCurrency]);
 
@@ -42,66 +50,86 @@ export function CurrencyConverter() {
   };
   
   return (
-    <div className="space-y-4">
-      <div className="grid gap-2">
-        <Label htmlFor="from-amount">You send</Label>
-        <div className="flex gap-2">
-          <Input
-            id="from-amount"
-            type="text"
-            value={amount}
-            onChange={handleAmountChange}
-            className="text-lg"
-          />
-          <Select value={fromCurrency} onValueChange={setFromCurrency}>
-            <SelectTrigger className="w-[120px]">
-              <SelectValue placeholder="Currency" />
-            </SelectTrigger>
-            <SelectContent>
-              {currencies.map((c) => (
-                <SelectItem key={c.code} value={c.code}>
-                  <div className="flex items-center gap-2">
-                    <c.icon className="h-4 w-4" /> {c.code}
-                  </div>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
+    <div className="space-y-6 rounded-lg border bg-card p-6 shadow-sm">
+        <h2 className="text-xl font-semibold">Currency Converter</h2>
+        <p className="text-muted-foreground -mt-5">Get live exchange rates.</p>
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr_auto_1fr] md:items-end gap-4">
+            <div className="grid gap-2">
+                <Label htmlFor="from-amount">Amount</Label>
+                <Input
+                    id="from-amount"
+                    type="text"
+                    value={amount}
+                    onChange={handleAmountChange}
+                />
+            </div>
+            <div className="grid gap-2">
+                <Label htmlFor="from-currency">From</Label>
+                 <Select value={fromCurrency} onValueChange={setFromCurrency}>
+                    <SelectTrigger>
+                    <SelectValue placeholder="Currency" />
+                    </SelectTrigger>
+                    <SelectContent>
+                    {currencies.map((c) => (
+                        <SelectItem key={c.code} value={c.code}>
+                        <div className="flex items-center gap-2">
+                            <c.icon className="h-4 w-4" /> {c.code}
+                        </div>
+                        </SelectItem>
+                    ))}
+                    </SelectContent>
+                </Select>
+            </div>
 
-      <div className="flex items-center justify-center">
-        <Button variant="ghost" size="icon" onClick={handleSwapCurrencies} aria-label="Swap currencies">
-          <ArrowDownUp className="h-5 w-5 text-muted-foreground" />
-        </Button>
-      </div>
+            <Button variant="ghost" size="icon" onClick={handleSwapCurrencies} aria-label="Swap currencies" className="self-end hidden md:flex">
+                <ArrowDownUp className="h-5 w-5 text-muted-foreground" />
+            </Button>
 
-      <div className="grid gap-2">
-        <Label htmlFor="to-amount">They receive (market rate)</Label>
-        <div className="flex gap-2">
-          <Input id="to-amount" value={convertedAmount} readOnly className="text-lg font-semibold bg-muted" />
-          <Select value={toCurrency} onValueChange={setToCurrency}>
-            <SelectTrigger className="w-[120px]">
-              <SelectValue placeholder="Currency" />
-            </SelectTrigger>
-            <SelectContent>
-              {currencies.map((c) => (
-                <SelectItem key={c.code} value={c.code}>
-                  <div className="flex items-center gap-2">
-                    <c.icon className="h-4 w-4" /> {c.code}
-                  </div>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+            <div className="grid gap-2">
+                <Label htmlFor="to-currency">To</Label>
+                <Select value={toCurrency} onValueChange={setToCurrency}>
+                    <SelectTrigger>
+                    <SelectValue placeholder="Currency" />
+                    </SelectTrigger>
+                    <SelectContent>
+                    {currencies.map((c) => (
+                        <SelectItem key={c.code} value={c.code}>
+                        <div className="flex items-center gap-2">
+                            <c.icon className="h-4 w-4" /> {c.code}
+                        </div>
+                        </SelectItem>
+                    ))}
+                    </SelectContent>
+                </Select>
+            </div>
         </div>
-      </div>
-      
-      {rate > 0 && (
-        <p className="text-sm text-center text-muted-foreground pt-2">
-          1 {fromCurrency} = {rate.toFixed(4)} {toCurrency}
-        </p>
-      )}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Card>
+                <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-medium flex items-center gap-2 text-green-600">
+                        <TrendingUp className="h-4 w-4" />
+                        Official (Interbank)
+                    </CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <p className="text-2xl font-bold">{interbankResult} <span className="text-lg text-muted-foreground">{toCurrency}</span></p>
+                    <p className="text-xs text-muted-foreground">1 {fromCurrency} = {interbankRate.toFixed(4)} {toCurrency}</p>
+                </CardContent>
+            </Card>
+            <Card>
+                <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-medium flex items-center gap-2 text-yellow-600">
+                        <TrendingUp className="h-4 w-4" />
+                        Open Market (Est.)
+                    </CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <p className="text-2xl font-bold">{openMarketResult} <span className="text-lg text-muted-foreground">{toCurrency}</span></p>
+                     <p className="text-xs text-muted-foreground">1 {fromCurrency} = {openMarketRate.toFixed(4)} {toCurrency}</p>
+                </CardContent>
+            </Card>
+        </div>
     </div>
   );
 }
