@@ -43,7 +43,7 @@ export function RateAlerts() {
   
   if (isAlertSet) {
     return (
-        <Card className="w-full max-w-lg mx-auto animate-in fade-in">
+        <Card className="w-full animate-in fade-in">
             <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                     <CheckCircle className="h-6 w-6 text-green-500" />
@@ -66,7 +66,7 @@ export function RateAlerts() {
   }
 
   return (
-    <Card className="w-full max-w-lg mx-auto">
+    <Card className="w-full">
         <CardHeader>
             <CardTitle>Set a Rate Alert</CardTitle>
             <CardDescription>Get notified when your target exchange rate is met.</CardDescription>
