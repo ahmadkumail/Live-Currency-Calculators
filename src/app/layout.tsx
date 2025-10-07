@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { Footer } from '@/components/footer';
 import Script from 'next/script';
+import { Header } from '@/components/header';
 
 export const metadata: Metadata = {
   title: 'Live Currency Converter – Real-Time Exchange Rates & Remittance Fees',
@@ -42,6 +43,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-background font-sans antialiased" style={{fontFamily: "'Inter', sans-serif"}}>
         <ThemeProvider>
           <div className="relative flex min-h-screen flex-col">
+            <Header />
             <main className="flex-1">{children}</main>
             <Footer />
           </div>
