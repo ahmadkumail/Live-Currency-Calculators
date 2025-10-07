@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowDownUp, Menu } from "lucide-react";
+import { CircleDollarSign, Menu } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
@@ -28,7 +28,7 @@ export function Header() {
         <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
-              <ArrowDownUp className="h-5 w-5 text-primary-foreground" />
+              <CircleDollarSign className="h-5 w-5 text-primary-foreground" />
             </div>
             <span className="hidden font-bold sm:inline-block">
               Live Currency Converter
@@ -66,7 +66,7 @@ export function Header() {
                 <div className="flex flex-col gap-4 p-4">
                 <Link href="/" className="flex items-center space-x-2 mb-4">
                   <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
-                    <ArrowDownUp className="h-5 w-5 text-primary-foreground" />
+                    <CircleDollarSign className="h-5 w-5 text-primary-foreground" />
                   </div>
                   <span className="font-bold">
                     Live Currency Converter
