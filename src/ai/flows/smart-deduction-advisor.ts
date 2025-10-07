@@ -31,12 +31,15 @@ const prompt = ai.definePrompt({
   name: 'smartDeductionAdvisorPrompt',
   input: {schema: SmartDeductionAdvisorInputSchema},
   output: {schema: SmartDeductionAdvisorOutputSchema},
-  prompt: `You are an expert financial advisor specializing in international money transfers.  Based on the amount a user wants to send and the recipient's location, you will recommend the best bank to use to minimize deductions and fees.
+  prompt: `You are an expert financial advisor specializing in international money transfers. Your task is to recommend the best bank for a user wanting to send money internationally, with the goal of minimizing deductions and fees.
 
-Amount to send: {{{amountToSend}}}
-Recipient Location: {{{recipientLocation}}}
+Analyze the user's request based on the amount they want to send and the recipient's location.
 
-Consider various banks and their associated fees.  Provide a recommendation for the bank with the lowest deductions and provide details about those deductions.
+User's Request:
+- Amount to send: {{{amountToSend}}} USD
+- Recipient Location: {{{recipientLocation}}}
+
+Based on this, provide a clear recommendation for the single best bank. Also, explain the fee structure and any deductions for the recommended bank. Be specific and helpful.
 `,
 });
 
