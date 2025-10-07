@@ -2,7 +2,6 @@ import type {Metadata} from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
-import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import Script from 'next/script';
 
@@ -43,7 +42,6 @@ export default function RootLayout({
       <body className="min-h-screen bg-background font-sans antialiased" style={{fontFamily: "'Inter', sans-serif"}}>
         <ThemeProvider>
           <div className="relative flex min-h-screen flex-col">
-            <Header />
             <main className="flex-1">{children}</main>
             <Footer />
           </div>
