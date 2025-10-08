@@ -40,11 +40,8 @@ export default function RootLayout({
         />
 
         {/* Google AdSense Verification */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5530405178327113"
-          crossOrigin="anonymous"
-        />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5530405178327113"
+     crossorigin="anonymous"></script>
 
         {/* Google Analytics */}
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-LW9B2S8PPV" />
