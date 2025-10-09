@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Home -->
   <url>
-    <loc>https://livecurrencyconverter.website/</loc>
-    <lastmod>2025-10-08</lastmod>
-    <priority>1.00</priority>
+    <loc>https://www.livecurrencyconverter.website/</loc>
+    <lastmod>2025-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
+
+  <!-- About Us -->
   <url>
-    <loc>https://livecurrencyconverter.website/converter</loc>
-    <lastmod>2025-10-08</lastmod>
-    <priority>0.85</priority>
+    <loc>https://www.livecurrencyconverter.website/about</loc>
+    <lastmod>2025-10-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
+
+  <!-- Terms -->
   <url>
-    <loc>https://livecurrencyconverter.website/remittance</loc>
-    <lastmod>2025-10-08</lastmod>
-    <priority>0.80</priority>
+    <loc>https://www.livecurrencyconverter.website/terms</loc>
+    <lastmod>2025-10-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://www.livecurrencyconverter.website/privacy</loc>
+    <lastmod>2025-10-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
 </urlset>
