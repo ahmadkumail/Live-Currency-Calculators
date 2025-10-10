@@ -10,7 +10,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Loader2, Send, CheckCircle } from "lucide-react";
+import { Loader2, Send, CheckCircle, AlertTriangle } from "lucide-react";
+import { sendContactMessage } from "@/app/actions";
+import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -21,6 +23,8 @@ const formSchema = z.object({
 export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -33,11 +37,22 @@ export default function ContactPage() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    console.log(values);
+    setError(null);
+    
+    const result = await sendContactMessage(values);
+    
     setIsLoading(false);
-    setIsSubmitted(true);
+
+    if (result.success) {
+      setIsSubmitted(true);
+    } else {
+      setError(result.error || "An unknown error occurred.");
+      toast({
+        variant: "destructive",
+        title: "Message Failed",
+        description: result.error || "Could not send your message. Please try again.",
+      });
+    }
   }
 
   if (isSubmitted) {
@@ -52,6 +67,7 @@ export default function ContactPage() {
                 <CardContent>
                     <Button onClick={() => {
                         setIsSubmitted(false);
+                        setError(null);
                         form.reset();
                     }} className="w-full">
                         Send Another Message
@@ -111,6 +127,12 @@ export default function ContactPage() {
                   </FormItem>
                 )}
               />
+              {error && (
+                <div className="flex items-center gap-2 text-sm text-destructive">
+                  <AlertTriangle className="h-4 w-4" />
+                  <span>{error}</span>
+                </div>
+              )}
               <Button type="submit" disabled={isLoading} className="w-full">
                 {isLoading ? (
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
