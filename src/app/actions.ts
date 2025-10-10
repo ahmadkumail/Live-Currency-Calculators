@@ -1,6 +1,6 @@
 "use server";
 
-import { smartDeductionAdvisor, SmartDAdvisorInput } from "@/ai/flows/smart-deduction-advisor";
+import { smartDeductionAdvisor, SmartDeductionAdvisorInput } from "@/ai/flows/smart-deduction-advisor";
 import { Resend } from "resend";
 import { z } from "zod";
 
@@ -10,7 +10,7 @@ const formSchema = z.object({
   message: z.string().min(10, "Message must be at least 10 characters."),
 });
 
-export async function getSmartAdvice(input: SmartDAdvisorInput) {
+export async function getSmartAdvice(input: SmartDeductionAdvisorInput) {
   try {
     const result = await smartDeductionAdvisor(input);
     return { success: true, data: result };
