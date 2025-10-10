@@ -1,6 +1,6 @@
 "use server";
 
-import { smartDeductionAdvisor, SmartDeductionAdvisorInput } from "@/ai/flows/smart-deduction-advisor";
+import { smartDeductionAdvisor, SmartDAdvisorInput } from "@/ai/flows/smart-deduction-advisor";
 import { Resend } from "resend";
 import { z } from "zod";
 
@@ -10,7 +10,7 @@ const formSchema = z.object({
   message: z.string().min(10, "Message must be at least 10 characters."),
 });
 
-export async function getSmartAdvice(input: SmartDeductionAdvisorInput) {
+export async function getSmartAdvice(input: SmartDAdvisorInput) {
   try {
     const result = await smartDeductionAdvisor(input);
     return { success: true, data: result };
@@ -32,9 +32,10 @@ export async function sendContactMessage(values: z.infer<typeof formSchema>) {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'Contact Form <onboarding@resend.dev>', // This must be a verified domain on Resend
+      from: 'Acme <onboarding@resend.dev>', // Use Resend's default verified 'from' address
       to: ['kumail.zaidi708@gmail.com'],
       subject: `New message from ${name} on your website`,
+      reply_to: email,
       html: `
         <p>You have received a new message from your website contact form.</p>
         <p><strong>Name:</strong> ${name}</p>
