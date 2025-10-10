@@ -10,6 +10,7 @@ export const currencies = [
   { code: 'INR', name: 'Indian Rupee', icon: CircleDollarSign },
   { code: 'PKR', name: 'Pakistani Rupee', icon: CircleDollarSign },
   { code: 'AED', name: 'UAE Dirham', icon: CircleDollarSign },
+  { code: 'SAR', name: 'Saudi Riyal', icon: CircleDollarSign },
 ];
 
 export const exchangeRates: { [key: string]: number } = {
@@ -22,6 +23,7 @@ export const exchangeRates: { [key: string]: number } = {
   INR: 83.54,
   PKR: 278.47,
   AED: 3.67,
+  SAR: 3.75,
 };
 
 export const banks = [
@@ -63,5 +65,5 @@ export const banks = [
 ];
 
 export const countries = [
-  "United States", "United Kingdom", "Canada", "Australia", "Germany", "France", "Japan", "India", "Pakistan", "United Arab Emirates"
+  "United States", "United Kingdom", "Canada", "Australia", "Germany", "France", "Japan", "India", "Pakistan", "United Arab Emirates", "Saudi Arabia"
 ];
