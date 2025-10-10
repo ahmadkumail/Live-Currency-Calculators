@@ -48,7 +48,7 @@ export function SmartAdvisor() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Smart Advisor</CardTitle>
+        <CardTitle>AI Smart Advisor</CardTitle>
         <CardDescription>Get AI-powered advice for the best transfer options.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">

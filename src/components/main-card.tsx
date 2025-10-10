@@ -16,7 +16,7 @@ export function MainCard() {
             Remittance
           </TabsTrigger>
            <TabsTrigger value="smart-advisor" className="data-[state=active]:bg-background data-[state=active]:shadow-sm">
-            Smart Advisor
+            AI Smart Advisor
           </TabsTrigger>
           <TabsTrigger value="alerts" className="data-[state=active]:bg-background data-[state=active]:shadow-sm">
             Rate Alerts
