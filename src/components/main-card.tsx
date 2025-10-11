@@ -3,18 +3,14 @@ import { CurrencyConverter } from "./currency-converter";
 import { RemittanceCalculator } from "./remittance-calculator";
 import { SmartAdvisor } from "./smart-advisor";
 import { RateAlerts } from "./rate-alerts";
-import { CryptoConverter } from "./crypto-converter";
 
 export function MainCard() {
   return (
     <div className="w-full max-w-4xl">
       <Tabs defaultValue="converter" className="w-full">
-        <TabsList className="grid h-auto w-full grid-cols-2 rounded-lg bg-muted p-1 sm:grid-cols-5">
+        <TabsList className="grid h-auto w-full grid-cols-2 rounded-lg bg-muted p-1 sm:grid-cols-4">
           <TabsTrigger value="converter" className="data-[state=active]:bg-background data-[state=active]:shadow-sm">
             Converter
-          </TabsTrigger>
-          <TabsTrigger value="crypto" className="data-[state=active]:bg-background data-[state=active]:shadow-sm">
-            Crypto
           </TabsTrigger>
           <TabsTrigger value="remittance" className="data-[state=active]:bg-background data-[state=active]:shadow-sm">
             Remittance
@@ -28,9 +24,6 @@ export function MainCard() {
         </TabsList>
         <TabsContent value="converter" className="mt-4">
           <CurrencyConverter />
-        </TabsContent>
-        <TabsContent value="crypto" className="mt-4">
-          <CryptoConverter />
         </TabsContent>
         <TabsContent value="remittance" className="mt-4">
           <RemittanceCalculator />
