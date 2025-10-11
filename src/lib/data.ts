@@ -12,6 +12,14 @@ export const currencies = [
   { code: 'PKR', name: 'Pakistani Rupee', icon: CircleDollarSign },
   { code: 'AED', name: 'UAE Dirham', icon: CircleDollarSign },
   { code: 'SAR', name: 'Saudi Riyal', icon: CircleDollarSign },
+  { code: 'NZD', name: 'New Zealand Dollar', icon: CircleDollarSign },
+  { code: 'ZAR', name: 'South African Rand', icon: CircleDollarSign },
+  { code: 'NPR', name: 'Nepalese Rupee', icon: CircleDollarSign },
+  { code: 'THB', name: 'Thai Baht', icon: CircleDollarSign },
+  { code: 'AFN', name: 'Afghan Afghani', icon: CircleDollarSign },
+  { code: 'BDT', name: 'Bangladeshi Taka', icon: CircleDollarSign },
+  { code: 'CNY', name: 'Chinese Yuan', icon: CircleDollarSign },
+  { code: 'LKR', name: 'Sri Lankan Rupee', icon: CircleDollarSign },
 ];
 
 export const exchangeRates = {
@@ -25,6 +33,14 @@ export const exchangeRates = {
   PKR: 278.47,
   AED: 3.67,
   SAR: 3.75,
+  NZD: 1.63,
+  ZAR: 18.35,
+  NPR: 133.7,
+  THB: 36.67,
+  AFN: 71.0,
+  BDT: 117.5,
+  CNY: 7.25,
+  LKR: 304.5,
 };
 
 export const banks = [
@@ -71,5 +87,5 @@ export const banks = [
 ];
 
 export const countries = [
-  "United States", "United Kingdom", "Canada", "Australia", "Germany", "France", "Japan", "India", "Pakistan", "United Arab Emirates", "Saudi Arabia"
+  "United States", "United Kingdom", "Canada", "Australia", "Germany", "France", "Japan", "India", "Pakistan", "United Arab Emirates", "Saudi Arabia", "New Zealand", "South Africa", "Nepal", "Thailand", "Afghanistan", "Bangladesh", "China", "Sri Lanka"
 ];
