@@ -34,7 +34,7 @@ export default function Home() {
   return (
     <>
     <div className="container relative mx-auto flex max-w-4xl flex-1 flex-col items-center justify-center py-8 md:py-12">
-      <header className="mb-4 px-4 text-center sm:mb-8">
+      <header className="mb-4 text-center sm:mb-8">
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-5xl">
           Live Currency Rates in Pakistan – USD to PKR & More
         </h1>
@@ -44,7 +44,7 @@ export default function Home() {
           rates along with remittance insights.
         </p>
       </header>
-      <section className="w-full px-2 sm:px-0">
+      <section className="w-full">
         <MainCard />
       </section>
        <section className="mt-12 w-full space-y-8 text-left">
