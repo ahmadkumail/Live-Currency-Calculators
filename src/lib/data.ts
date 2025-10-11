@@ -28,9 +28,9 @@ export const exchangeRates = {
   PKR: 278.47,
   AED: 3.67,
   SAR: 3.75,
-  BTC: 61000, // Placeholder rate
-  ETH: 3400, // Placeholder rate
-  SOL: 135, // Placeholder rate
+  BTC: 61500, // Placeholder rate
+  ETH: 3450, // Placeholder rate
+  SOL: 137, // Placeholder rate
 };
 
 export const banks = [
