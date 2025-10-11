@@ -1,3 +1,4 @@
+
 import { DollarSign, Euro, PoundSterling, JapaneseYen, CircleDollarSign, Bitcoin } from 'lucide-react';
 
 export const currencies = [
@@ -16,7 +17,7 @@ export const currencies = [
   { code: 'SOL', name: 'Solana', icon: CircleDollarSign },
 ];
 
-export const exchangeRates: { [key: string]: number } = {
+export const exchangeRates = {
   USD: 1,
   EUR: 0.93,
   GBP: 0.79,
@@ -39,6 +40,7 @@ export const banks = [
     fee: 5,
     feeType: 'fixed',
     rateModifier: 0.99, // 1% worse than market rate
+    currencies: ['USD', 'EUR', 'GBP', 'PKR', 'INR', 'AED', 'SAR']
   },
   {
     id: 'swift-transfer',
@@ -46,6 +48,7 @@ export const banks = [
     fee: 0.01, // 1%
     feeType: 'percentage',
     rateModifier: 0.995, // 0.5% worse than market rate
+    currencies: ['USD', 'EUR', 'GBP', 'PKR', 'INR', 'AED', 'SAR']
   },
   {
     id: 'peoples-bank',
@@ -53,6 +56,7 @@ export const banks = [
     fee: 10,
     feeType: 'fixed',
     rateModifier: 1, // Market rate
+    currencies: ['PKR', 'INR']
   },
   {
     id: 'wise',
@@ -60,6 +64,7 @@ export const banks = [
     fee: 0.005, // 0.5%
     feeType: 'percentage',
     rateModifier: 1, // Market rate
+    currencies: ['USD', 'EUR', 'GBP', 'CAD', 'AUD']
   },
   {
     id: 'payoneer',
@@ -67,6 +72,7 @@ export const banks = [
     fee: 3,
     feeType: 'fixed',
     rateModifier: 0.992, // 0.8% worse than market rate
+    currencies: ['USD', 'EUR', 'GBP']
   }
 ];
 

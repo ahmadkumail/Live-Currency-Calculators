@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -25,7 +26,7 @@ export function CryptoConverter() {
   const [result, setResult] = useState<string>("");
 
   const conversionRate =
-    (exchangeRates[toCurrency] || 0) / (exchangeRates[fromCurrency] || 1);
+    (exchangeRates[toCurrency as keyof typeof exchangeRates] || 0) / (exchangeRates[fromCurrency as keyof typeof exchangeRates] || 1);
 
   useEffect(() => {
     if (typeof amount === "number") {

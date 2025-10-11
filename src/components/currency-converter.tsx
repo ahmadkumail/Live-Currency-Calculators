@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -23,7 +24,7 @@ export function CurrencyConverter() {
   const [openMarketResult, setOpenMarketResult] = useState<string>("");
 
   const interbankRate =
-    (exchangeRates[toCurrency] || 0) / (exchangeRates[fromCurrency] || 1);
+    (exchangeRates[toCurrency as keyof typeof exchangeRates] || 0) / (exchangeRates[fromCurrency as keyof typeof exchangeRates] || 1);
   const openMarketRate = interbankRate * 1.02; // 2% higher for open market
 
   useEffect(() => {
