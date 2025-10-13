@@ -1,26 +1,37 @@
 
-import { DollarSign, Euro, PoundSterling, JapaneseYen, CircleDollarSign } from 'lucide-react';
+import { DollarSign, Euro, PoundSterling, Bitcoin, JapaneseYen, CircleDollarSign } from 'lucide-react';
 
 export const currencies = [
   { code: 'USD', name: 'US Dollar', icon: DollarSign },
   { code: 'EUR', name: 'Euro', icon: Euro },
   { code: 'GBP', name: 'British Pound', icon: PoundSterling },
   { code: 'JPY', name: 'Japanese Yen', icon: JapaneseYen },
-  { code: 'CAD', name: 'Canadian Dollar', icon: CircleDollarSign },
-  { code: 'AUD', name: 'Australian Dollar', icon: CircleDollarSign },
-  { code: 'INR', name: 'Indian Rupee', icon: CircleDollarSign },
   { code: 'PKR', name: 'Pakistani Rupee', icon: CircleDollarSign },
+  { code: 'INR', name: 'Indian Rupee', icon: CircleDollarSign },
   { code: 'AED', name: 'UAE Dirham', icon: CircleDollarSign },
   { code: 'SAR', name: 'Saudi Riyal', icon: CircleDollarSign },
-  { code: 'NZD', name: 'New Zealand Dollar', icon: CircleDollarSign },
-  { code: 'ZAR', name: 'South African Rand', icon: CircleDollarSign },
-  { code: 'NPR', name: 'Nepalese Rupee', icon: CircleDollarSign },
-  { code: 'THB', name: 'Thai Baht', icon: CircleDollarSign },
-  { code: 'AFN', name: 'Afghan Afghani', icon: CircleDollarSign },
-  { code: 'BDT', name: 'Bangladeshi Taka', icon: CircleDollarSign },
-  { code: 'CNY', name: 'Chinese Yuan', icon: CircleDollarSign },
-  { code: 'LKR', name: 'Sri Lankan Rupee', icon: CircleDollarSign },
+  { code: 'BTC', name: 'Bitcoin', icon: Bitcoin },
+  { code: 'ETH', name: 'Ethereum', icon: CircleDollarSign },
+  { code: 'SOL', name: 'Solana', icon: CircleDollarSign },
+  { code: 'CAD', name: 'Canadian Dollar', icon: CircleDollarSign },
+  { code: 'AUD', name: 'Australian Dollar', icon: CircleDollarSign },
 ];
+
+export const exchangeRates = {
+    USD: 1,
+    EUR: 0.92,
+    GBP: 0.79,
+    JPY: 157.19,
+    PKR: 278.50,
+    INR: 83.54,
+    AED: 3.67,
+    SAR: 3.75,
+    BTC: 0.000014,
+    ETH: 0.00027,
+    SOL: 0.0060,
+    CAD: 1.37,
+    AUD: 1.50
+};
 
 export const banks = [
   {
@@ -66,5 +77,5 @@ export const banks = [
 ];
 
 export const countries = [
-  "United States", "United Kingdom", "Canada", "Australia", "Germany", "France", "Japan", "India", "Pakistan", "United Arab Emirates", "Saudi Arabia", "New Zealand", "South Africa", "Nepal", "Thailand", "Afghanistan", "Bangladesh", "China", "Sri Lanka"
+  "United States", "United Kingdom", "Canada", "Australia", "Germany", "France", "Japan", "India", "Pakistan", "United Arab Emirates", "Saudi Arabia"
 ];

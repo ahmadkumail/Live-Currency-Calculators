@@ -33,8 +33,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-    <div className="container relative mx-auto flex max-w-4xl flex-1 flex-col items-center justify-center py-8 md:py-12">
-      <header className="mb-4 text-center sm:mb-8">
+    <div className="container relative mx-auto flex max-w-4xl flex-1 flex-col items-center justify-center px-4 py-8 md:py-12">
+      <header className="mb-4 px-4 text-center sm:mb-8 sm:px-6">
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-5xl">
           Live Currency Rates in Pakistan – USD to PKR & More
         </h1>
@@ -44,10 +44,10 @@ export default function Home() {
           rates along with remittance insights.
         </p>
       </header>
-      <section className="w-full">
+      <section className="w-full px-4 sm:px-6">
         <MainCard />
       </section>
-       <section className="mt-12 w-full space-y-8 text-left">
+       <section className="mt-12 w-full space-y-8 px-4 text-left sm:px-6">
         <div>
           <h2 className="text-2xl font-semibold mb-2">
             💵 USD to PKR Rate Today

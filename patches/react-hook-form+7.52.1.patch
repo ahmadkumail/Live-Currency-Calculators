@@ -1,0 +1,12 @@
+diff --git a/node_modules/react-hook-form/package.json b/node_modules/react-hook-form/package.json
+index d3c711a..87a4c77 100644
+--- a/node_modules/react-hook-form/package.json
++++ b/node_modules/react-hook-form/package.json
+@@ -62,6 +62,6 @@
+     "pre-release"
+   ],
+   "peerDependencies": {
+-    "react": "^16.8.0 || ^17 || ^18 || ^19"
++    "react": "^16.8.0 || ^17 || ^18 || ^19.0.0-rc-f994737d14-20240522"
+   }
+ }
