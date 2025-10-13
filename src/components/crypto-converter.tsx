@@ -1,40 +1,17 @@
-
 "use client";
 
-import { useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { currencies, exchangeRates } from "@/lib/data";
-import { ArrowDownUp } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { banks, currencies, exchangeRates } from "@/lib/data";
 
-const cryptoCodes = ["BTC", "ETH", "SOL"];
-const fiatCodes = currencies.filter(c => !cryptoCodes.includes(c.code)).map(c => c.code);
-
-export function CryptoConverter() {
-  const [fromCurrency, setFromCurrency] = useState("BTC");
-  const [toCurrency, setToCurrency] = useState("USD");
-  const [amount, setAmount] = useState<number | string>(1);
-  const [result, setResult] = useState<string>("");
-
-  const conversionRate =
-    (exchangeRates[toCurrency as keyof typeof exchangeRates] || 0) / (exchangeRates[fromCurrency as keyof typeof exchangeRates] || 1);
-
-  useEffect(() => {
-    if (typeof amount === "number") {
-      setResult((amount * conversionRate).toFixed(cryptoCodes.includes(toCurrency) ? 6 : 2));
-    } else {
-      setResult("");
-    }
-  }, [amount, fromCurrency, toCurrency, conversionRate]);
+export function RemittanceCalculator() {
+  const [fromCurrency, setFromCurrency] = useState("USD");
+  const [toCurrency, setToCurrency] = useState("PKR");
+  const [amount, setAmount] = useState<number | string>(1000);
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -43,110 +20,102 @@ export function CryptoConverter() {
     }
   };
 
-  const handleSwapCurrencies = () => {
-    setFromCurrency(toCurrency);
-    setToCurrency(fromCurrency);
-  };
-  
-  const getSelectCurrencies = (type: 'from' | 'to') => {
-      const isFromCrypto = cryptoCodes.includes(fromCurrency);
-      if (type === 'from') {
-          return currencies;
+  const calculationResults = useMemo(() => {
+    if (typeof amount !== 'number' || amount <= 0) return [];
+
+    const marketRate = (exchangeRates[toCurrency as keyof typeof exchangeRates] || 0) / (exchangeRates[fromCurrency as keyof typeof exchangeRates] || 1);
+    if (marketRate === 0) return [];
+
+    const results = banks.map(bank => {
+      const bankRate = marketRate * bank.rateModifier;
+      let fee = 0;
+      if (bank.feeType === 'fixed') {
+        fee = bank.fee;
+      } else {
+        fee = amount * bank.fee;
       }
-      if (type === 'to') {
-          return isFromCrypto ? currencies.filter(c => !cryptoCodes.includes(c.code)) : currencies.filter(c => cryptoCodes.includes(c.code));
-      }
-      return currencies;
-  }
+      
+      const recipientGets = (amount - fee) * bankRate;
+
+      return {
+        ...bank,
+        bankRate,
+        fee,
+        recipientGets
+      };
+    });
+    
+    return results.sort((a,b) => b.recipientGets - a.recipientGets);
+
+  }, [amount, fromCurrency, toCurrency]);
 
   return (
-    <div className="space-y-4">
-      <Card>
-        <CardHeader>
-          <CardTitle>Crypto Converter</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="grid grid-cols-1 items-end gap-4 md:grid-cols-[2fr_1fr_auto_1fr] md:gap-2">
-            <div className="grid gap-2">
-              <Label htmlFor="amount">Amount</Label>
-              <Input
-                id="amount"
-                type="text"
-                value={amount}
-                onChange={handleAmountChange}
-              />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="from-currency">From</Label>
-              <Select value={fromCurrency} onValueChange={(value) => {
-                  const isSwitchingToFiat = fiatCodes.includes(value);
-                  const isToFiat = fiatCodes.includes(toCurrency);
-                  if (isSwitchingToFiat && isToFiat) {
-                      setToCurrency(cryptoCodes[0]);
-                  } else if (!isSwitchingToFiat && !isToFiat){
-                      setToCurrency(fiatCodes[0]);
-                  }
-                  setFromCurrency(value);
-              }}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Currency" />
-                </SelectTrigger>
-                <SelectContent>
-                  {getSelectCurrencies('from').map((c) => (
-                    <SelectItem key={c.code} value={c.code}>
-                      <div className="flex items-center gap-2">{c.code}</div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="flex items-center justify-center pt-6">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={handleSwapCurrencies}
-                aria-label="Swap currencies"
-                className="h-9 w-9"
-              >
-                <ArrowDownUp className="h-4 w-4 text-muted-foreground" />
-              </Button>
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="to-currency">To</Label>
-              <Select value={toCurrency} onValueChange={setToCurrency}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Currency" />
-                </SelectTrigger>
-                <SelectContent>
-                  {getSelectCurrencies('to').map((c) => (
-                    <SelectItem key={c.code} value={c.code}>
-                      <div className="flex items-center gap-2">{c.code}</div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader>
-          <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-            Conversion Result
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="text-2xl font-bold md:text-3xl">
-            {result}{" "}
-            <span className="text-lg font-medium text-muted-foreground md:text-xl">
-              {toCurrency}
-            </span>
-          </div>
-          <div className="mt-1 text-sm text-muted-foreground">
-            1 {fromCurrency} = {conversionRate.toFixed(cryptoCodes.includes(toCurrency) ? 6 : 4)} {toCurrency}
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>Remittance Calculator</CardTitle>
+        <CardDescription>Compare banks to find the best rate for your transfer.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-6">
+       <div className="grid grid-cols-1 items-end gap-4 md:grid-cols-3">
+        <div className="grid gap-2">
+          <Label htmlFor="remit-amount">Amount to Send</Label>
+          <Input
+            id="remit-amount"
+            type="text"
+            value={amount}
+            onChange={handleAmountChange}
+          />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="from-currency-remit">From</Label>
+          <Select value={fromCurrency} onValueChange={setFromCurrency}>
+            <SelectTrigger id="from-currency-remit"><SelectValue /></SelectTrigger>
+            <SelectContent>
+              {currencies.map((c) => <SelectItem key={c.code} value={c.code}>{c.name}</SelectItem>)}
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="to-currency-remit">To</Label>
+          <Select value={toCurrency} onValueChange={setToCurrency}>
+            <SelectTrigger id="to-currency-remit"><SelectValue /></SelectTrigger>
+            <SelectContent>
+              {currencies.map((c) => <SelectItem key={c.code} value={c.code}>{c.name}</SelectItem>)}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="mb-2 text-lg font-medium">Bank Comparison</h3>
+        <div className="w-full overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Bank</TableHead>
+                <TableHead className="text-right">Fee ({fromCurrency})</TableHead>
+                <TableHead className="text-right">Recipient Gets ({toCurrency})</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {calculationResults.length > 0 ? calculationResults.map((result, index) => (
+                <TableRow key={result.id} className={index === 0 ? 'bg-green-50 dark:bg-green-900/20' : ''}>
+                  <TableCell className="font-medium whitespace-nowrap">{result.name}</TableCell>
+                  <TableCell className="text-right">{result.fee.toFixed(2)}</TableCell>
+                  <TableCell className="text-right font-semibold whitespace-nowrap">{result.recipientGets.toFixed(2)}</TableCell>
+                </TableRow>
+              )) : (
+                <TableRow>
+                  <TableCell colSpan={3} className="text-center text-muted-foreground py-8">
+                    Enter an amount to see comparison.
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
+      </CardContent>
+    </Card>
   );
 }

@@ -74,7 +74,7 @@ export function CurrencyConverter() {
                   <SelectValue placeholder="Currency" />
                 </SelectTrigger>
                 <SelectContent>
-                  {currencies.filter(c => c.code !== 'BTC' && c.code !== 'ETH' && c.code !== 'SOL').map((c) => (
+                  {currencies.map((c) => (
                     <SelectItem key={c.code} value={c.code}>
                       <div className="flex items-center gap-2">{c.code}</div>
                     </SelectItem>
@@ -100,7 +100,7 @@ export function CurrencyConverter() {
                   <SelectValue placeholder="Currency" />
                 </SelectTrigger>
                 <SelectContent>
-                  {currencies.filter(c => c.code !== 'BTC' && c.code !== 'ETH' && c.code !== 'SOL').map((c) => (
+                  {currencies.map((c) => (
                     <SelectItem key={c.code} value={c.code}>
                       <div className="flex items-center gap-2">{c.code}</div>
                     </SelectItem>

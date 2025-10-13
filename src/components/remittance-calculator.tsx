@@ -72,7 +72,7 @@ export function RemittanceCalculator() {
           <Select value={fromCurrency} onValueChange={setFromCurrency}>
             <SelectTrigger id="from-currency-remit"><SelectValue /></SelectTrigger>
             <SelectContent>
-              {currencies.filter(c => c.code !== 'BTC' && c.code !== 'ETH' && c.code !== 'SOL').map((c) => <SelectItem key={c.code} value={c.code}>{c.name}</SelectItem>)}
+              {currencies.map((c) => <SelectItem key={c.code} value={c.code}>{c.name}</SelectItem>)}
             </SelectContent>
           </Select>
         </div>
@@ -81,7 +81,7 @@ export function RemittanceCalculator() {
           <Select value={toCurrency} onValueChange={setToCurrency}>
             <SelectTrigger id="to-currency-remit"><SelectValue /></SelectTrigger>
             <SelectContent>
-              {currencies.filter(c => c.code !== 'BTC' && c.code !== 'ETH' && c.code !== 'SOL').map((c) => <SelectItem key={c.code} value={c.code}>{c.name}</SelectItem>)}
+              {currencies.map((c) => <SelectItem key={c.code} value={c.code}>{c.name}</SelectItem>)}
             </SelectContent>
           </Select>
         </div>
