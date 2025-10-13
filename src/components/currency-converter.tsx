@@ -12,8 +12,8 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { currencies, exchangeRates } from "@/lib/data";
-import { ArrowDownUp, ArrowUp } from "lucide-react";
+import { currencies } from "@/lib/data";
+import { ArrowDownUp, ArrowUp, Loader2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 export function CurrencyConverter() {
@@ -22,20 +22,44 @@ export function CurrencyConverter() {
   const [amount, setAmount] = useState<number | string>(1);
   const [interbankResult, setInterbankResult] = useState<string>("");
   const [openMarketResult, setOpenMarketResult] = useState<string>("");
+  const [exchangeRates, setExchangeRates] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const interbankRate =
-    (exchangeRates[toCurrency as keyof typeof exchangeRates] || 0) / (exchangeRates[fromCurrency as keyof typeof exchangeRates] || 1);
+  useEffect(() => {
+    const apiKey = process.env.NEXT_PUBLIC_EXCHANGE_RATE_API_KEY;
+    if (!apiKey) {
+      console.error("ExchangeRate-API key is missing.");
+      setIsLoading(false);
+      return;
+    }
+    
+    fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.result === 'success') {
+          setExchangeRates(data.conversion_rates);
+        } else {
+          console.error("Failed to fetch exchange rates:", data['error-type']);
+        }
+        setIsLoading(false);
+      }).catch(error => {
+        console.error("Error fetching exchange rates:", error);
+        setIsLoading(false);
+      });
+  }, []);
+
+  const interbankRate = exchangeRates ? (exchangeRates[toCurrency] || 0) / (exchangeRates[fromCurrency] || 1) : 0;
   const openMarketRate = interbankRate * 1.02; // 2% higher for open market
 
   useEffect(() => {
-    if (typeof amount === "number") {
+    if (typeof amount === "number" && exchangeRates) {
       setInterbankResult((amount * interbankRate).toFixed(2));
       setOpenMarketResult((amount * openMarketRate).toFixed(2));
     } else {
       setInterbankResult("");
       setOpenMarketResult("");
     }
-  }, [amount, fromCurrency, toCurrency, interbankRate, openMarketRate]);
+  }, [amount, fromCurrency, toCurrency, interbankRate, openMarketRate, exchangeRates]);
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -110,6 +134,12 @@ export function CurrencyConverter() {
           </div>
         </CardContent>
       </Card>
+      {isLoading ? (
+        <div className="flex justify-center items-center p-8">
+            <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+            <p className="ml-2 text-muted-foreground">Loading live rates...</p>
+        </div>
+      ) : exchangeRates ? (
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
@@ -150,6 +180,14 @@ export function CurrencyConverter() {
           </CardContent>
         </Card>
       </div>
+      ) : (
+         <Card className="text-center p-8">
+            <CardTitle className="text-destructive">Failed to load rates</CardTitle>
+            <CardDescription>
+                Could not fetch live currency data. Please ensure your API key is correct in the .env file.
+            </CardDescription>
+        </Card>
+      )}
     </div>
   );
 }

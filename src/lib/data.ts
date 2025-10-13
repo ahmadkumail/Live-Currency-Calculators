@@ -22,27 +22,6 @@ export const currencies = [
   { code: 'LKR', name: 'Sri Lankan Rupee', icon: CircleDollarSign },
 ];
 
-export const exchangeRates = {
-  USD: 1,
-  EUR: 0.93,
-  GBP: 0.79,
-  JPY: 157.34,
-  CAD: 1.37,
-  AUD: 1.51,
-  INR: 83.54,
-  PKR: 278.47,
-  AED: 3.67,
-  SAR: 3.75,
-  NZD: 1.63,
-  ZAR: 18.35,
-  NPR: 133.7,
-  THB: 36.67,
-  AFN: 71.0,
-  BDT: 117.5,
-  CNY: 7.25,
-  LKR: 304.5,
-};
-
 export const banks = [
   {
     id: 'global-bank',
