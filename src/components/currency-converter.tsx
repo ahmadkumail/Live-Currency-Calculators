@@ -11,9 +11,6 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import {
   ChartContainer,
@@ -26,6 +23,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
@@ -152,14 +150,8 @@ export function CurrencyConverter() {
 
   return (
     <div className="space-y-8">
-      <Card className="w-full text-left shadow-lg">
-        <CardHeader>
-          <CardTitle className="text-xl">Currency Converter</CardTitle>
-          <CardDescription>
-            Live exchange rates for your currency conversions.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+      <Card className="w-full text-left shadow-2xl shadow-primary/10">
+        <CardContent className="p-6">
           <Form {...form}>
             <form
               onSubmit={(e) => e.preventDefault()}
@@ -191,6 +183,7 @@ export function CurrencyConverter() {
                             ))}
                           </SelectContent>
                         </Select>
+                         <FormMessage />
                       </FormItem>
                     )}
                   />
@@ -208,6 +201,7 @@ export function CurrencyConverter() {
                             className="text-lg"
                           />
                         </FormControl>
+                        <FormMessage />
                       </FormItem>
                     )}
                   />
@@ -223,7 +217,7 @@ export function CurrencyConverter() {
                     onClick={handleSwapCurrencies}
                     aria-label="Swap currencies"
                   >
-                    <RefreshCw className="h-5 w-5" />
+                    <RefreshCw className="h-5 w-5 text-primary" />
                   </Button>
                 </div>
 
@@ -261,84 +255,79 @@ export function CurrencyConverter() {
                   </FormItem>
                 </div>
               </div>
+               {rate && !error && (
+                <div className="mt-4 text-center text-muted-foreground">
+                  <p className="font-semibold text-lg text-primary">
+                    1 {fromCurrency} = {rate.toFixed(4)} {toCurrency}
+                  </p>
+                  <p className="text-xs">Last updated seconds ago</p>
+                </div>
+              )}
+              {error && (
+                <div className="mt-4 text-center text-sm font-medium text-destructive">
+                  <p>Error: {error}</p>
+                </div>
+              )}
             </form>
           </Form>
-
-          {rate && !error && (
-            <div className="mt-6 text-center text-sm text-muted-foreground">
-              <p>
-                1 {fromCurrency} = {rate.toFixed(4)} {toCurrency}
-              </p>
-            </div>
-          )}
-          {error && (
-            <div className="mt-4 text-center text-sm font-medium text-destructive">
-              <p>Error: {error}</p>
-            </div>
-          )}
         </CardContent>
       </Card>
 
-      <Card className="w-full text-left shadow-lg">
-        <CardHeader>
-          <CardTitle>
-            {fromCurrency} to {toCurrency} chart
-          </CardTitle>
-          <CardDescription>
-            Last 6 months exchange rate history.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ChartContainer config={chartConfig} className="h-64 w-full">
-            <BarChart accessibilityLayer data={chartData}>
-              <CartesianGrid vertical={false} />
-              <XAxis
-                dataKey="month"
-                tickLine={false}
-                tickMargin={10}
-                axisLine={false}
-              />
-              <YAxis
-                tickLine={false}
-                axisLine={false}
-                tickMargin={10}
-                domain={['dataMin - 0.02', 'dataMax + 0.02']}
-              />
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent />}
-              />
-              <Bar dataKey="rate" fill="var(--color-rate)" radius={4} />
-            </BarChart>
-          </ChartContainer>
-        </CardContent>
-      </Card>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+        <Card className="w-full text-left shadow-lg">
+          <CardContent className="p-6">
+            <h3 className="text-lg font-semibold mb-4">
+              {fromCurrency} to {toCurrency} chart
+            </h3>
+            <ChartContainer config={chartConfig} className="h-64 w-full">
+              <BarChart accessibilityLayer data={chartData}>
+                <CartesianGrid vertical={false} />
+                <XAxis
+                  dataKey="month"
+                  tickLine={false}
+                  tickMargin={10}
+                  axisLine={false}
+                />
+                <YAxis
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={10}
+                  domain={['dataMin - 0.02', 'dataMax + 0.02']}
+                />
+                <ChartTooltip
+                  cursor={false}
+                  content={<ChartTooltipContent />}
+                />
+                <Bar dataKey="rate" fill="var(--color-rate)" radius={4} />
+              </BarChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
 
-      <Card className="w-full text-left shadow-lg">
-        <CardHeader>
-          <CardTitle>
-            {fromCurrency} to {toCurrency} conversion table
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>{fromCurrency}</TableHead>
-                <TableHead className="text-right">{toCurrency}</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {rate && commonAmounts.map(amount => (
-                <TableRow key={amount}>
-                  <TableCell>{amount.toLocaleString()}</TableCell>
-                  <TableCell className="text-right">{(amount * rate).toFixed(2)}</TableCell>
+        <Card className="w-full text-left shadow-lg">
+          <CardContent className="p-6">
+            <h3 className="text-lg font-semibold mb-4">
+              {fromCurrency} to {toCurrency} conversion table
+            </h3>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>{fromCurrency}</TableHead>
+                  <TableHead className="text-right">{toCurrency}</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
+              </TableHeader>
+              <TableBody>
+                {rate && commonAmounts.map(amount => (
+                  <TableRow key={amount}>
+                    <TableCell>{amount.toLocaleString()}</TableCell>
+                    <TableCell className="text-right">{(amount * rate).toFixed(2)}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
