@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
+import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'My Basic App',
-  description: 'A new beginning for my application.',
+  title: siteConfig.name,
+  description: siteConfig.description,
 };
 
 export default function RootLayout({

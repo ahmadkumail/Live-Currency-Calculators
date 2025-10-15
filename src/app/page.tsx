@@ -1,15 +1,20 @@
+import { CurrencyConverter } from '@/components/currency-converter';
+import { siteConfig } from '@/config/site';
+
 export default function Home() {
   return (
-    <div className="container relative mx-auto flex min-h-screen max-w-4xl flex-1 flex-col items-center justify-center px-4 py-8 text-center md:py-12">
-      <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
-        Welcome to Your New Site
-      </h1>
-      <p className="mt-4 text-lg text-muted-foreground sm:text-xl">
-        This is a clean, basic starting point. All previous code has been reset.
-      </p>
-      <p className="mt-2 text-base text-muted-foreground">
-        You can now build your application from a stable foundation.
-      </p>
+    <div className="container relative mx-auto flex min-h-screen flex-1 flex-col items-center justify-center px-4 py-8 text-center md:py-12">
+      <section className="mx-auto flex w-full max-w-2xl flex-col items-center gap-2">
+        <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
+          {siteConfig.name}
+        </h1>
+        <p className="max-w-xl text-muted-foreground sm:text-lg">
+          {siteConfig.description}
+        </p>
+      </section>
+      <section className="mt-8 w-full max-w-2xl">
+        <CurrencyConverter />
+      </section>
     </div>
   );
 }
