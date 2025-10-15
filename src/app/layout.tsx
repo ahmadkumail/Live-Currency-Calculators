@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { siteConfig } from '@/config/site';
+import { SiteHeader } from '@/components/site-header';
+import { SiteFooter } from '@/components/site-footer';
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -33,7 +35,9 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <div className="relative flex min-h-screen flex-col">
+            <SiteHeader />
             <main className="flex-1">{children}</main>
+            <SiteFooter />
           </div>
         </ThemeProvider>
       </body>
