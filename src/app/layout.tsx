@@ -1,23 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
-import { Toaster } from '@/components/ui/toaster';
-import { Footer } from '@/components/footer';
-import Script from 'next/script';
-import { Header } from '@/components/header';
 
 export const metadata: Metadata = {
-  title: 'Live Currency Converter – Real-Time Exchange Rates & Remittance Fees',
-  description:
-    'Convert currencies instantly with live exchange rates, remittance fee calculator, and bank transfer comparison. Stay updated on global finance.',
-  openGraph: {
-    title:
-      'Live Currency Converter – Real-Time Exchange Rates & Remittance Fees',
-    description:
-      'Check live exchange rates, remittance fees, and bank transfer costs worldwide.',
-    type: 'website',
-    url: 'https://www.livecurrencyconverter.website',
-  },
+  title: 'My Basic App',
+  description: 'A new beginning for my application.',
 };
 
 export default function RootLayout({
@@ -38,23 +25,6 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
-
-        {/* Google AdSense Verification */}
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5530405178327113"
-     crossorigin="anonymous"></script>
-
-        {/* Google Analytics */}
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-LW9B2S8PPV" />
-        <Script id="google-analytics">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-LW9B2S8PPV');
-          `}
-        </Script>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5530405178327113"
-     crossOrigin="anonymous"></script>
       </head>
       <body
         className="min-h-screen bg-background font-sans antialiased"
@@ -62,11 +32,8 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <div className="relative flex min-h-screen flex-col">
-            <Header />
             <main className="flex-1">{children}</main>
-            <Footer />
           </div>
-          <Toaster />
         </ThemeProvider>
       </body>
     </html>
